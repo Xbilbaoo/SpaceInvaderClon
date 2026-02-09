@@ -7,7 +7,21 @@ public abstract class Entity {
     private int width;
     private int height;
 
+    /**
+     *
+     * Constructor with all attributes.
+     * @param xPos Initial X position of the entity
+     * @param yPos Initial Y position of the entity
+     * @param width Initial width of the entity
+     * @param height Initial heigth of the entity
+     */
 
+    public Entity(int xPos, int yPos, int width, int height) {
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.width = width;
+        this.height = height;
+    }
 
     /**
      * Getter for the xPos attribute
