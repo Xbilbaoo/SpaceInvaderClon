@@ -4,10 +4,10 @@ import java.awt.Rectangle;
 
 public abstract class Entity {
 
-    private int xPos;
-    private int yPos;
-    private int width;
-    private int height;
+    protected int xPos;
+    protected int yPos;
+    protected int width;
+    protected int height;
 
     /**
      *
