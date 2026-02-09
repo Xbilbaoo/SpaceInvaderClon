@@ -1,5 +1,7 @@
 package com.Zypher.SpaceInvaderClon.model;
 
+import java.awt.Rectangle;
+
 public abstract class Entity {
 
     private int xPos;
@@ -73,4 +75,16 @@ public abstract class Entity {
      * @param height The new height of an entity
      */
     public void setHeight(int height) { this.height = height; }
+
+    /**
+     * Method the get the collision box of an entity.
+     * Used to check collisions between entities.
+     * @return A Rectangle object representing the area occupied by the entity.
+     */
+    public Rectangle getBounds() { return new Rectangle(xPos, yPos, width,height); }
+
+    /**
+     * Updates the logic of an entity
+     */
+    public abstract void tick();
 }
