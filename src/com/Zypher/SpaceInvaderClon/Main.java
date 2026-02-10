@@ -15,12 +15,6 @@ public class Main {
         // Le pasamos el 'player' para que sepa qué dibujar.
         GamePanel panel = new GamePanel(player);
 
-        // 3. CONFIGURAR LA VENTANA (JFrame)
-        JFrame window = new JFrame("Space Invaders Clon");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.add(panel); // Metemos el dibujo dentro de la ventana
-        window.setSize(800, 600);
-        window.setResizable(false);
-        window.setVisible(true); // ¡Acción!
+
     }
 }
