@@ -32,10 +32,16 @@ public class KeyHandler extends KeyAdapter {
                 this.player.setDx(-5);
                 break;
 
-            default:
+        }
+    }
 
-                this.player.setDx(0);
-                break;
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int code = e.getKeyCode();
+
+        // Lógica: Si suelta la tecla de dirección, paramos la nave.
+        if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_LEFT) {
+            player.setDx(0);
         }
     }
 }
