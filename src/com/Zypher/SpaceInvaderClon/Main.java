@@ -15,7 +15,7 @@ public class Main {
 
         // 2. CREAR LA VISTA (El Panel)
         // Le pasamos el modelo para que sepa qué pintar
-        GamePanel panel = new GamePanel(player);
+        GamePanel panel = new GamePanel(player, );
 
         // 3. CONFIGURAR LA VENTANA (El Marco)
         JFrame window = new JFrame("Space Invaders Clon - Zypher");

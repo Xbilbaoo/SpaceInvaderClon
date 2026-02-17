@@ -15,7 +15,7 @@ public class GamePanel extends JPanel {
     // Actualizamos el constructor para recibir las balas
     public GamePanel(PlayerSpace player, ArrayList<Bullet> bullets) {
         this.player = player;
-        this.bullets = bullets; // <--- Guardamos la referencia
+        this.bullets = bullets;
     }
 
     @Override
