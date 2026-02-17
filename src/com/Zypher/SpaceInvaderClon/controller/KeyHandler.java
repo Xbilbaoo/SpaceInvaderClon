@@ -10,11 +10,12 @@ import java.util.ArrayList;
 public class KeyHandler extends KeyAdapter {
 
     private PlayerSpace player;
-    private ArrayList<Bullet> bullets;
+    private GameController gameCtrl;
 
-    public KeyHandler(PlayerSpace player, ArrayList<Bullet> bullets) {
+    public KeyHandler(PlayerSpace player, GameController gameCtrl) {
 
         this.player = player;
+        this.gameCtrl = gameCtrl;
 
     }
 
@@ -33,6 +34,11 @@ public class KeyHandler extends KeyAdapter {
             case (KeyEvent.VK_LEFT):
 
                 this.player.setDx(-5);
+                break;
+
+            case (KeyEvent.VK_SPACE):
+
+                this.gameCtrl.shoot();
                 break;
 
         }

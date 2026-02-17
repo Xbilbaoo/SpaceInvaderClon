@@ -21,7 +21,7 @@ public class GameController implements Runnable {
         this.player = player;
         this.view = view;
         this.bullets = new ArrayList<>();
-        KeyHandler input = new KeyHandler(player, bullets);
+        KeyHandler input = new KeyHandler(player, this);
 
         this.view.addKeyListener(input);
         this.view.setFocusable(true);
