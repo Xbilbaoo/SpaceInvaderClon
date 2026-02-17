@@ -1,15 +1,18 @@
 package com.Zypher.SpaceInvaderClon.controller;
 
+import com.Zypher.SpaceInvaderClon.model.Bullet;
 import com.Zypher.SpaceInvaderClon.model.PlayerSpace;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 public class KeyHandler extends KeyAdapter {
 
     private PlayerSpace player;
+    private ArrayList<Bullet> bullets;
 
-    public KeyHandler(PlayerSpace player) {
+    public KeyHandler(PlayerSpace player, ArrayList<Bullet> bullets) {
 
         this.player = player;
 

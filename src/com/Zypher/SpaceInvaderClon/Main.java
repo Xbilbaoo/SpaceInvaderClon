@@ -28,7 +28,7 @@ public class Main {
 
         // 4. CREAR Y ARRANCAR EL CONTROLADOR (El Motor)
         // Conectamos todo y encendemos el bucle del juego
-        GameController controller = new GameController(player, panel);
+        GameController controller = new GameController(player, panel, );
         controller.start();
     }
 }
