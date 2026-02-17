@@ -16,11 +16,14 @@ public class GameController implements Runnable {
     private final int FPS = 60;
     private final int TARGET_TIME = 1000 / FPS;
 
+    private static final int FIRE_RATE = 400;
+    private long lastShotTime = 0;
+
     public GameController(PlayerSpace player, GamePanel view, ArrayList<Bullet> bullets) {
 
         this.player = player;
         this.view = view;
-        this.bullets = new ArrayList<>();
+        this.bullets = bullets;
         KeyHandler input = new KeyHandler(player, this);
 
         this.view.addKeyListener(input);
@@ -82,15 +85,22 @@ public class GameController implements Runnable {
     }
 
     public void shoot() {
-        // MATEMÁTICA: Centrar la bala en la nave
-        // X = Posición Nave + Mitad Nave - Mitad Bala
-        int bulletW = 6;
-        int bulletH = 15;
-        int xStart = player.getxPos() + (player.getWidth() / 2) - (bulletW / 2);
-        int yStart = player.getyPos(); // Sale de la punta de arriba
 
-        Bullet newBullet = new Bullet(xStart, yStart, bulletW, bulletH);
-        bullets.add(newBullet);
+        long currentTime = System.currentTimeMillis();
+
+        if (currentTime - lastShotTime > FIRE_RATE) {
+
+            int bulletW = 6;
+            int bulletH = 15;
+            int xStart = player.getxPos() + (player.getWidth() / 2) - (bulletW / 2);
+            int yStart = player.getyPos();
+
+            Bullet newBullet = new Bullet(xStart, yStart, bulletW, bulletH);
+            bullets.add(newBullet);
+
+
+            lastShotTime = currentTime;
+        }
     }
 
     public ArrayList<Bullet> getBullets() {

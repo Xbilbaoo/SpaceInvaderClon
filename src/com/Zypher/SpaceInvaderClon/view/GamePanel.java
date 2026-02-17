@@ -22,15 +22,14 @@ public class GamePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // 1. Pintar Fondo
+        // Paint the background
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        // 2. Pintar Jugador
+        // Paint the player
         g.setColor(Color.GREEN);
         g.fillRect(player.getxPos(), player.getyPos(), player.getWidth(), player.getHeight());
 
-        // 3. PINTAR BALAS (El Bucle Mágico)
         g.setColor(Color.YELLOW); // Las balas serán amarillas
 
         // Usamos un bucle for-each para recorrer la lista
