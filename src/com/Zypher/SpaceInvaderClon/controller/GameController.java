@@ -16,7 +16,7 @@ public class GameController implements Runnable {
     private final int FPS = 60;
     private final int TARGET_TIME = 1000 / FPS;
 
-    private static final int FIRE_RATE = 400;
+    private static final int FIRE_RATE = 200;
     private long lastShotTime = 0;
 
     public GameController(PlayerSpace player, GamePanel view, ArrayList<Bullet> bullets) {
