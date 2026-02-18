@@ -89,6 +89,10 @@ public class GameController implements Runnable {
             }
         }
 
+        for (Alien a : aliens) {
+            a.tick(view.getWidth());
+        }
+
         boolean hitEdge = false;
 
         for (Alien a : aliens) {
