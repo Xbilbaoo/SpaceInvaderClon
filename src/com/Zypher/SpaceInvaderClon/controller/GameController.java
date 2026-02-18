@@ -122,17 +122,17 @@ public class GameController implements Runnable {
          int startX = 20;
          int startY = 20;
 
-         int paddingX = 20;
-         int paddingY = 30;
+         int paddingX = 40;
+         int paddingY = 60;
 
          for ( int i = 0; i < 3; i ++) {
 
-             for (int j = 0; j < 6; j ++) {
+             for (int j = 0; j < 8; j ++) {
 
-                 int xPos = startX + (j * (60 + paddingX));
-                 int yPos = startY + (i * (60 + paddingY));
+                 int xPos = startX + (j * (40 + paddingX));
+                 int yPos = startY + (i * (40 + paddingY));
 
-                 aliens.add(new Alien(xPos, yPos, 60, 60));
+                 aliens.add(new Alien(xPos, yPos, 40, 40));
 
              }
          }
