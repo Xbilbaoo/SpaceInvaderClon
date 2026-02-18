@@ -16,14 +16,7 @@ public class Alien extends Entity {
     public Alien(int xPos, int yPos, int width, int height) {
 
         super(xPos, yPos, width, height);
-        this.dx = 0;
-
-    }
-
-    @Override
-    public void tick(int screenWidth) {
-
-        setDx(1);
+        this.dx = 1;
 
     }
 
@@ -35,11 +28,16 @@ public class Alien extends Entity {
         this.dx = dx;
     }
 
+    @Override
+    public void tick(int screenWidth) {
+        setxPos(getxPos() + dx);
+    }
+
     public void changeDirection() {
         setDx(getDx() * -1);
     }
 
     public void goDown() {
-        setyPos(getyPos() - 1);
+        setyPos(getyPos() + 20);
     }
 }
