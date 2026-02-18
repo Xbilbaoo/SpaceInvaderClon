@@ -73,19 +73,17 @@ public class GameController implements Runnable {
     }
 
     private void update() {
-        // 1. Mover Jugador
+
         player.tick(view.getWidth());
 
-        // 2. Mover Balas
+
         for (int i = 0; i < bullets.size(); i++) {
             Bullet b = bullets.get(i);
-            b.tick(view.getWidth()); // Mueve la bala hacia arriba
+            b.tick(view.getWidth());
 
-            // 3. Limpieza: Si la bala sale de la pantalla (Y < 0), la borramos
-            // para no llenar la memoria del ordenador infinitamente.
             if (b.getyPos() < 0) {
                 bullets.remove(i);
-                i--; // Importante: al borrar, retrocedemos el índice para no saltarnos la siguiente
+                i--;
             }
         }
 
@@ -114,6 +112,8 @@ public class GameController implements Runnable {
                 a.goDown();
             }
         }
+
+        checkCollisions();
     }
 
     public void shoot() {
@@ -141,23 +141,51 @@ public class GameController implements Runnable {
 
     public void createAliens() {
 
-         int startX = 20;
-         int startY = 20;
+        int startX = 20;
+        int startY = 20;
 
-         int paddingX = 40;
-         int paddingY = 60;
+        int paddingX = 40;
+        int paddingY = 60;
 
-         for ( int i = 0; i < 3; i ++) {
+        for (int i = 0; i < 3; i++) {
 
-             for (int j = 0; j < 8; j ++) {
+            for (int j = 0; j < 8; j++) {
 
-                 int xPos = startX + (j * (40 + paddingX));
-                 int yPos = startY + (i * (40 + paddingY));
+                int xPos = startX + (j * (40 + paddingX));
+                int yPos = startY + (i * (40 + paddingY));
 
-                 aliens.add(new Alien(xPos, yPos, 40, 40));
+                aliens.add(new Alien(xPos, yPos, 40, 40));
 
-             }
-         }
+            }
+        }
+    }
+
+    private void checkCollisions() {
+        // Recorremos las balas
+        for (int i = 0; i < bullets.size(); i++) {
+            Bullet b = bullets.get(i);
+
+            // Creamos un cuadrado invisible (Hitbox) para la bala
+            java.awt.Rectangle bulletRect = new java.awt.Rectangle(b.getxPos(), b.getyPos(), b.getWidth(), b.getHeight());
+
+            // Recorremos los aliens
+            for (int j = 0; j < aliens.size(); j++) {
+                Alien a = aliens.get(j);
+
+                // Creamos un cuadrado invisible para el alien
+                java.awt.Rectangle alienRect = new java.awt.Rectangle(a.getxPos(), a.getyPos(), a.getWidth(), a.getHeight());
+
+                // ¡CONTACTO!
+                if (bulletRect.intersects(alienRect)) {
+
+                    aliens.remove(j); // Adiós Alien
+                    bullets.remove(i); // Adiós Bala
+
+                    i--; // Ajustamos el índice de balas porque acabamos de borrar una
+                    break; // Salimos del bucle de aliens (una bala no mata a dos a la vez)
+                }
+            }
+        }
     }
 
 }

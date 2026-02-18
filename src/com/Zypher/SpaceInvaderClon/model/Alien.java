@@ -38,6 +38,6 @@ public class Alien extends Entity {
     }
 
     public void goDown() {
-        setyPos(getyPos() + 20);
+        setyPos(getyPos() + 10);
     }
 }
