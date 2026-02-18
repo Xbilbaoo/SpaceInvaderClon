@@ -21,12 +21,12 @@ public class GameController implements Runnable {
     private static final int FIRE_RATE = 200;
     private long lastShotTime = 0;
 
-    public GameController(PlayerSpace player, GamePanel view, ArrayList<Bullet> bullets) {
+    public GameController(PlayerSpace player, GamePanel view, ArrayList<Bullet> bullets, ArrayList<Alien> aliens) {
 
         this.player = player;
-        this.view = view
+        this.view = view;
         this.bullets = bullets;
-        this.aliens = new ArrayList<Alien>();
+        this.aliens = aliens;
 
         createAliens();
 
@@ -87,6 +87,10 @@ public class GameController implements Runnable {
                 bullets.remove(i);
                 i--; // Importante: al borrar, retrocedemos el índice para no saltarnos la siguiente
             }
+        }
+
+        for (Alien a : aliens) {
+            a.tick(view.getWidth());
         }
     }
 
