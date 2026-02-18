@@ -33,7 +33,7 @@ public class Main {
         window.setVisible(true);
 
         // 4. EL CONTROLADOR
-        // Le pasamos el jugador, el panel Y la misma lista de balas para que las gestione
+        // Le pasamos el jugador, el panel Y la misma lista de balas para que las gestiones
         GameController controller = new GameController(player, panel, bullets);
 
         controller.start();

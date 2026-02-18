@@ -1,5 +1,6 @@
 package com.Zypher.SpaceInvaderClon.controller;
 
+import com.Zypher.SpaceInvaderClon.model.Alien;
 import com.Zypher.SpaceInvaderClon.model.Bullet;
 import com.Zypher.SpaceInvaderClon.model.PlayerSpace;
 import com.Zypher.SpaceInvaderClon.view.GamePanel;
@@ -10,6 +11,7 @@ public class GameController implements Runnable {
 
     private PlayerSpace player;
     private ArrayList<Bullet> bullets;
+    private ArrayList<Alien> aliens;
     private GamePanel view;
     private boolean isRunning = false;
 
@@ -22,8 +24,12 @@ public class GameController implements Runnable {
     public GameController(PlayerSpace player, GamePanel view, ArrayList<Bullet> bullets) {
 
         this.player = player;
-        this.view = view;
+        this.view = view
         this.bullets = bullets;
+        this.aliens = new ArrayList<Alien>();
+
+        createAliens();
+
         KeyHandler input = new KeyHandler(player, this);
 
         this.view.addKeyListener(input);
@@ -105,6 +111,27 @@ public class GameController implements Runnable {
 
     public ArrayList<Bullet> getBullets() {
         return bullets;
+    }
+
+    public void createAliens() {
+
+         int startX = 20;
+         int startY = 20;
+
+         int paddingX = 10;
+         int paddingY = 10;
+
+         for ( int i = 0; i < 3; i ++) {
+
+             for (int j = 0; j < 6; j ++) {
+
+                 int xPos = startX + (j * (40 + paddingX));
+                 int yPos = startY + (i * (40 + paddingY));
+
+                 aliens.add(new Alien(xPos, yPos, 40, 40));
+
+             }
+         }
     }
 
 }
