@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import java.util.ArrayList; // Importante: Importar ArrayList
 
 import com.Zypher.SpaceInvaderClon.controller.GameController;
+import com.Zypher.SpaceInvaderClon.model.Alien;
 import com.Zypher.SpaceInvaderClon.model.Bullet; // Importante: Importar Bullet
 import com.Zypher.SpaceInvaderClon.model.PlayerSpace;
 import com.Zypher.SpaceInvaderClon.view.GamePanel;
@@ -19,9 +20,11 @@ public class Main {
         // El Main es el "dueño" de la munición y se la presta a todos.
         ArrayList<Bullet> bullets = new ArrayList<>();
 
+        ArrayList<Alien> aliens = new ArrayList<>();
+
         // 2. LA VISTA (El Panel)
         // Le pasamos al jugador Y la lista de balas compartida para que las pueda pintar
-        GamePanel panel = new GamePanel(player, bullets);
+        GamePanel panel = new GamePanel(player, bullets, aliens);
 
         // 3. LA VENTANA
         JFrame window = new JFrame("Space Invaders Clon - Zypher");
@@ -33,8 +36,8 @@ public class Main {
         window.setVisible(true);
 
         // 4. EL CONTROLADOR
-        // Le pasamos el jugador, el panel Y la misma lista de balas para que las gestione
-        GameController controller = new GameController(player, panel, bullets);
+        // Le pasamos el jugador, el panel Y la misma lista de balas para que las gestiones
+        GameController controller = new GameController(player, panel, bullets, aliens);
 
         controller.start();
     }
