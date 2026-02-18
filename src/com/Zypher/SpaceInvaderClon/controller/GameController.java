@@ -89,8 +89,26 @@ public class GameController implements Runnable {
             }
         }
 
+        boolean hitEdge = false;
+
         for (Alien a : aliens) {
-            a.tick(view.getWidth());
+
+            if (a.getDx() > 0 && a.getxPos() >= view.getWidth() - a.getWidth()) {
+                hitEdge = true;
+                break;
+            }
+
+            if (a.getDx() < 0 && a.getxPos() <= 0) {
+                hitEdge = true;
+                break;
+            }
+        }
+
+        if (hitEdge) {
+            for (Alien a : aliens) {
+                a.changeDirection();
+                a.goDown();
+            }
         }
     }
 

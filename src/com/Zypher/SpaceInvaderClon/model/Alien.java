@@ -16,7 +16,7 @@ public class Alien extends Entity {
     public Alien(int xPos, int yPos, int width, int height) {
 
         super(xPos, yPos, width, height);
-        this.dx = 1;
+        this.dx = 2;
 
     }
 
