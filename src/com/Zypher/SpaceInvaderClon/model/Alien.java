@@ -1,5 +1,13 @@
 package com.Zypher.SpaceInvaderClon.model;
 
+/**
+ *
+ * Class that represents the enemies of the game.
+ * It
+ * @author Zypher
+ * @version 0.1
+ */
+
 public class Alien extends Entity {
 
     private int dx;
@@ -13,6 +21,7 @@ public class Alien extends Entity {
      * @param width  Initial width of the entity
      * @param height Initial height of the entity
      */
+
     public Alien(int xPos, int yPos, int width, int height) {
 
         super(xPos, yPos, width, height);

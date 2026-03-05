@@ -1,14 +1,17 @@
 package com.Zypher.SpaceInvaderClon;
 
 import javax.swing.JFrame;
-import java.util.ArrayList; // Importante: Importar ArrayList
+import java.util.ArrayList;
 
 import com.Zypher.SpaceInvaderClon.controller.GameController;
 import com.Zypher.SpaceInvaderClon.model.Alien;
-import com.Zypher.SpaceInvaderClon.model.Bullet; // Importante: Importar Bullet
+import com.Zypher.SpaceInvaderClon.model.Bullet;
 import com.Zypher.SpaceInvaderClon.model.PlayerSpace;
 import com.Zypher.SpaceInvaderClon.view.GamePanel;
 
+/**
+ * 
+ */
 public class Main {
 
     public static void main(String[] args) {

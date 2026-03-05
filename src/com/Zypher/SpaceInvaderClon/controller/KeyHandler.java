@@ -1,16 +1,28 @@
 package com.Zypher.SpaceInvaderClon.controller;
 
-import com.Zypher.SpaceInvaderClon.model.Bullet;
 import com.Zypher.SpaceInvaderClon.model.PlayerSpace;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
+
+/**
+ *
+ * This class handles key events (movement and actions) of the player and game.
+ *
+ * @version 0.1
+ * @author Zypher
+ */
 
 public class KeyHandler extends KeyAdapter {
 
-    private PlayerSpace player;
-    private GameController gameCtrl;
+    private final PlayerSpace player;
+    private final GameController gameCtrl;
+
+    /**
+     * Standard Constructor to this Key Handler.
+     * @param player Player instance
+     * @param gameCtrl Controller instance
+     */
 
     public KeyHandler(PlayerSpace player, GameController gameCtrl) {
 
@@ -18,6 +30,12 @@ public class KeyHandler extends KeyAdapter {
         this.gameCtrl = gameCtrl;
 
     }
+
+    /**
+     * Method to do actions when the player presses the play buttons.
+     *
+     * @param e The key that the user is pressing.
+     */
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -44,11 +62,16 @@ public class KeyHandler extends KeyAdapter {
         }
     }
 
+    /**
+     * Method to stop any action when player want to stop moving.
+     *
+     * @param e The key that the user is releasing.
+     */
+
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
 
-        // Lógica: Si suelta la tecla de dirección, paramos la nave.
         if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_LEFT) {
             player.setDx(0);
         }

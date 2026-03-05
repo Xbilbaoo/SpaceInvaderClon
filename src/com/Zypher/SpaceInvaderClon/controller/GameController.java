@@ -7,20 +7,33 @@ import com.Zypher.SpaceInvaderClon.view.GamePanel;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * This class "controls" the game loop.
+ *
+ * @author Zypher
+ * @version 0.1
+ */
 public class GameController implements Runnable {
 
-    private PlayerSpace player;
-    private ArrayList<Bullet> bullets;
-    private ArrayList<Alien> aliens;
-    private GamePanel view;
+    private final PlayerSpace player;
+    private final ArrayList<Bullet> bullets;
+    private final ArrayList<Alien> aliens;
+    private final GamePanel view;
     private boolean isRunning = false;
-
-    private final int FPS = 60;
-    private final int TARGET_TIME = 1000 / FPS;
 
     private static final int FIRE_RATE = 200;
     private long lastShotTime = 0;
 
+    /**
+     *
+     * Constructor with needed attributes. In this process, it starts the game.
+     *
+     * @param player  Player instance.
+     * @param view    View instance.
+     * @param bullets An empty array to the bullets.
+     * @param aliens  An empty array of enemies.
+     */
     public GameController(PlayerSpace player, GamePanel view, ArrayList<Bullet> bullets, ArrayList<Alien> aliens) {
 
         this.player = player;
@@ -38,6 +51,10 @@ public class GameController implements Runnable {
 
     }
 
+    /**
+     * Method to initiate the program
+     */
+
     public void start() {
 
         isRunning = true;
@@ -45,6 +62,10 @@ public class GameController implements Runnable {
         gameThread.start();
 
     }
+
+    /**
+     * Method of the game loop.
+     */
 
     @Override
     public void run() {
@@ -58,6 +79,8 @@ public class GameController implements Runnable {
             view.repaint();
 
             long timeTaken = System.currentTimeMillis() - startTime;
+            int FPS = 60;
+            int TARGET_TIME = 1000 / FPS;
             long waitTime = TARGET_TIME - timeTaken;
 
             try {
@@ -71,6 +94,10 @@ public class GameController implements Runnable {
             }
         }
     }
+
+    /**
+     * Method to sync the visual with the logic.
+     */
 
     private void update() {
 
@@ -116,6 +143,9 @@ public class GameController implements Runnable {
         checkCollisions();
     }
 
+    /**
+     * This method allows to "shoot" bullets. Each bullet has a delay.
+     */
     public void shoot() {
 
         long currentTime = System.currentTimeMillis();
@@ -135,9 +165,10 @@ public class GameController implements Runnable {
         }
     }
 
-    public ArrayList<Bullet> getBullets() {
-        return bullets;
-    }
+    /**
+     * Method to create the enemies. At this moment there isn't
+     * different difficulties, so there is a predefined pattern.
+     */
 
     public void createAliens() {
 
@@ -160,29 +191,28 @@ public class GameController implements Runnable {
         }
     }
 
+    /**
+     * Method to check collisions between a bullet and an enemy.
+     */
     private void checkCollisions() {
-        // Recorremos las balas
+
         for (int i = 0; i < bullets.size(); i++) {
             Bullet b = bullets.get(i);
 
-            // Creamos un cuadrado invisible (Hitbox) para la bala
             java.awt.Rectangle bulletRect = new java.awt.Rectangle(b.getxPos(), b.getyPos(), b.getWidth(), b.getHeight());
 
-            // Recorremos los aliens
             for (int j = 0; j < aliens.size(); j++) {
                 Alien a = aliens.get(j);
 
-                // Creamos un cuadrado invisible para el alien
                 java.awt.Rectangle alienRect = new java.awt.Rectangle(a.getxPos(), a.getyPos(), a.getWidth(), a.getHeight());
 
-                // ¡CONTACTO!
                 if (bulletRect.intersects(alienRect)) {
 
-                    aliens.remove(j); // Adiós Alien
-                    bullets.remove(i); // Adiós Bala
+                    aliens.remove(j);
+                    bullets.remove(i);
 
-                    i--; // Ajustamos el índice de balas porque acabamos de borrar una
-                    break; // Salimos del bucle de aliens (una bala no mata a dos a la vez)
+                    i--;
+                    break;
                 }
             }
         }
